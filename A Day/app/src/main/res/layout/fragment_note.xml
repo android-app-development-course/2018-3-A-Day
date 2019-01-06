@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_alignParentTop="true"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:queryHint="请输入搜索内容"
+        android:background="#DEEBF1">
+    </SearchView>
+
+    <ListView
+        android:layout_below="@id/searchView"
+        android:id="@android:id/list"
+        android:layout_above="@+id/createButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/createButton"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom ="true"
+        android:background="@drawable/btn_circle"
+        android:text="＋"
+        android:textColor="@color/white"
+        android:textSize="35sp" />
+
+</RelativeLayout>

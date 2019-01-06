@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/walkmain_bg"
+    android:id="@+id/walk_fragment">
+
+    <ImageView
+        android:id="@+id/iv_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/aa"
+        android:layout_marginTop="195dp"
+        android:layout_marginLeft="25dp"
+        android:src="@drawable/history_icon"/>
+
+    <ImageView
+        android:id="@+id/iv_chart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/aa"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/chart_icon"/>
+
+    <ImageView
+        android:id="@+id/iv_plan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:src="@drawable/cup_icon" />
+
+    <ImageView
+        android:id="@+id/iv_calorie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/aa"
+        android:layout_marginTop="195dp"
+        android:layout_marginRight="25dp"
+        android:src="@drawable/calorie_icon"/>
+
+    <com.example.bottombar.view.WaveProgressView
+        android:id="@+id/aa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/iv_plan"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/tv_StepCount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:gravity="center"
+        android:text="0"
+        android:textColor="@color/green"
+        android:textSize="43sp" />
+
+</RelativeLayout>

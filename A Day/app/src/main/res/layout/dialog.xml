@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#AEEEEE">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="每日计划步数"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textColor="@color/green"/>
+
+    <EditText
+        android:id="@+id/input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/title"
+        android:inputType="number"
+        android:gravity="center"
+        android:maxLength="6"
+        android:text="6000"
+        android:textSize="25sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/input"
+        android:layout_marginTop="10dp">
+
+    <Button
+        android:id="@+id/yes_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/light"
+        android:text="确定"/>
+
+    <Button
+        android:id="@+id/no_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_weight="1"
+        android:background="@color/light"
+        android:text="取消"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

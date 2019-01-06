@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#25b9c3">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="85dp"
+        android:src="@drawable/cupphoto"/>
+
+    <EditText
+        android:id="@+id/ed_planStep"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="45sp"
+        android:inputType="number"
+        android:maxLength="6"
+        android:text="6000"
+        android:textColor="#c7c8cc" />
+
+    <Button
+        android:id="@+id/set_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:layout_gravity="center"
+        android:text="  SET GOAL  "
+        android:textColor="@color/blue_light"
+        android:textSize="20sp"
+        android:background="#3d586d" />
+
+    <ImageView
+        android:id="@+id/back_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="185dp"
+        android:layout_gravity="center"
+        android:src="@drawable/back_icon"/>
+</LinearLayout>

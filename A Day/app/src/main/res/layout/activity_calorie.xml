@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="今天你已经消耗掉"
+        android:textSize="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="45dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <com.example.bottombar.view.CircleImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/cole"
+        android:id="@+id/imageView"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/title"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/tv_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="0杯可乐"
+        android:textSize="25dp"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true" />
+
+
+    <TextView
+        android:id="@+id/tv_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_num"
+        android:gravity="center"
+        android:text="0"
+        android:textSize="55dp"
+        android:textColor="@color/green1"
+        android:layout_marginTop="70dp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_num"
+        android:gravity="center"
+        android:text="kcal"
+        android:textSize="20dp"
+        android:textColor="@color/gray_light"
+        android:layout_marginTop="105dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/tv_show" />
+
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back_icon"
+        android:scaleType="centerCrop"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp" />
+
+</RelativeLayout>

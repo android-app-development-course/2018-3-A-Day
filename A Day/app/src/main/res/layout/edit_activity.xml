@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/lay_main"
+    android:background="@drawable/pureskin1">
+
+    <LinearLayout
+        android:id="@+id/ll_tittle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#13b9f5">
+
+        <ImageButton
+            android:id="@+id/prv_btn"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:background="#00000000"
+            android:scaleType="fitXY"
+            android:src="@drawable/prv" />
+
+        <android.support.v4.widget.Space
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/yes_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="5dp"
+            android:background="#00000000"
+            android:scaleType="fitXY"
+            android:src="@drawable/yes" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_tittle"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_time"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/timeText"/>
+    </LinearLayout>
+
+    <com.example.bottombar.ptEditor
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:cursorVisible="true"
+        android:textCursorDrawable="@drawable/edit_cursor"
+        android:id="@+id/pt_edit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:gravity="top"
+        android:layout_below="@+id/ll_time"
+        android:layout_above="@+id/ll_menu">
+    </com.example.bottombar.ptEditor>
+
+    <LinearLayout
+        android:id="@+id/ll_menu"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#ADD8E6"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom= "true">
+
+        <LinearLayout
+            android:id="@+id/ll_img"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/iv_img"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_height="33dp"
+                android:background="#00000000"
+                android:src="@drawable/img"/>
+
+            <TextView
+                android:id="@+id/tv_img"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="图片" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_skin"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/iv_skin"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:background="#00000000"
+                android:src="@drawable/skin"/>
+
+            <TextView
+                android:id="@+id/tv_skin"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="换肤" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_alert"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/iv_alert"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:background="#00000000"
+                android:src="@drawable/alert"/>
+
+            <TextView
+                android:id="@+id/tv_alert"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="提醒" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/skinmenu"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:background="#DCDCDC"
+        android:layout_above="@+id/ll_menu"
+        android:scrollbars="none"
+        android:visibility="gone">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+
+            <LinearLayout
+                android:id="@+id/ll_pureskin1"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/iv_pureskin1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:background="#00000000"
+                    android:src="@drawable/pureskin1"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:id="@+id/tv_pureskin1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:textSize="15sp"
+                    android:text="默认" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_pureskin2"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/iv_pureskin2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:background="#00000000"
+                    android:src="@drawable/pureskin2"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:id="@+id/tv_pureskin2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:textSize="15sp"
+                    android:text="纯色一" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_pureskin3"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/iv_pureskin3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:background="#00000000"
+                    android:src="@drawable/pureskin3"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:id="@+id/tv_pureskin3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:textSize="15sp"
+                    android:text="纯色二" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_pureskin4"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/iv_pureskin4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:background="#00000000"
+                    android:src="@drawable/pureskin4"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:id="@+id/tv_pureskin4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:textSize="15sp"
+                    android:text="纯色三" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_pureskin5"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/iv_pureskin5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:background="#00000000"
+                    android:src="@drawable/pureskin5"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:id="@+id/tv_pureskin5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:textSize="15sp"
+                    android:text="纯色四" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_pureskin6"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/iv_pureskin6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:background="#00000000"
+                    android:src="@drawable/pureskin6"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:id="@+id/tv_pureskin6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:textSize="15sp"
+                    android:text="纯色五" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_perskin1"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/iv_perskin1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:background="#00000000"
+                    android:src="@drawable/perskin1"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:id="@+id/tv_perskin1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:textSize="15sp"
+                    android:text="个性一" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_perskin2"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/iv_perskin2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:background="#00000000"
+                    android:src="@drawable/perskin2"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:id="@+id/tv_perskin2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:textSize="15sp"
+                    android:text="个性二" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_perskin3"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/iv_perskin3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:background="#00000000"
+                    android:src="@drawable/perskin3"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:id="@+id/tv_perskin3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:textSize="15sp"
+                    android:text="个性三" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_perskin4"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/iv_perskin4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:background="#00000000"
+                    android:src="@drawable/perskin4"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:id="@+id/tv_perskin4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:textSize="15sp"
+                    android:text="个性四" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_perskin5"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/iv_perskin5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:background="#00000000"
+                    android:src="@drawable/perskin5"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:id="@+id/tv_perskin5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:textSize="15sp"
+                    android:text="个性五" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_perskin6"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/iv_perskin6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:background="#00000000"
+                    android:src="@drawable/perskin6"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:id="@+id/tv_perskin6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:textSize="15sp"
+                    android:text="个性六" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+</RelativeLayout>
