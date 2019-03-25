@@ -4,7 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/lineView"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_marginTop="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"/>
 
+<!--
     <com.example.bottombar.view.LineView
         android:id="@+id/lineView"
         android:layout_width="wrap_content"
@@ -12,13 +21,13 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="25dp"
         android:layout_marginTop="30dp" />
-
+-->
     <ImageView
         android:id="@+id/change_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lineView"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:layout_marginLeft="120dp"
         android:layout_centerHorizontal="true"
         android:src="@drawable/walk_icon"/>

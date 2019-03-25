@@ -18,6 +18,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -41,17 +42,18 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class NoteFragment extends ListFragment implements SearchView.OnQueryTextListener,EasyPermissions.PermissionCallbacks{
 
-
+    private int flag = 1;
     private static final int REQUEST_PERMISSION_SD_STORAGE_CODE = 1;
     SimpleAdapter listAdapter;
     int index = 0;// 长按指定数据的索引
     PopupWindow mPopupWindow = null;
     ArrayList<HashMap<String,String>> showlist,list = Utils.getList();
-    private String[] perms = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    private String[] perms = {Manifest.permission.CAMERA,Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
     DatabaseHelper dbHelper = new DatabaseHelper(getActivity(), "a_day_db");
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        flag=2;
         if (EasyPermissions.hasPermissions(getActivity(), perms)) {
             //如果有权限,正常流程
         } else {
@@ -175,18 +177,39 @@ public class NoteFragment extends ListFragment implements SearchView.OnQueryText
     }
 
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        Utils.DateToMillis(list);
+    }
 
     @Override
     public void onResume() {
         super.onResume();
-        Utils.sort();
-        Utils.MillisToDate(list);
-        getListView().setOnItemClickListener(new ListItemClickListener());
-        listAdapter = new SimpleAdapter(getActivity(),list,R.layout.list_item,new String[]{"datetime","content"},
-                new int[]{R.id.datetime,R.id.content});
-        setListAdapter(listAdapter);
-//        listAdapter.notifyDataSetChanged();                           //更新ListView的数据显示
-//        Utils.DateToMillis();
+        flag ++ ;
+        if(flag != 3)
+        {
+            Utils.sort();
+            Utils.MillisToDate(list);
+            int size = list.size();
+            ArrayList<Integer> items = new ArrayList<Integer>();
+
+            for(int i = 0; i<size; i++){
+                if(list.get(i).get("content").equals("")){
+                    items.add(i);
+                }
+            }
+            int n = 0;
+            for(int i = 0;i<items.size();i++)
+            {
+                deleteItem(items.get(i)-n);
+                n++;
+            }
+            getListView().setOnItemClickListener(new ListItemClickListener());
+            listAdapter = new SimpleAdapter(getActivity(),list,R.layout.list_item,new String[]{"datetime","content"},
+                    new int[]{R.id.datetime,R.id.content});
+            setListAdapter(listAdapter);
+        }
     }
 
     @Override
@@ -253,7 +276,7 @@ public class NoteFragment extends ListFragment implements SearchView.OnQueryText
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
-        intent.putExtra(Intent.EXTRA_TEXT, "This is a day，来自备忘录分享："+Utils.getItem(index).get("content"));
+        intent.putExtra(Intent.EXTRA_TEXT, Utils.getItem(index).get("content")+"\n---------来自A Day分享");
         startActivity(Intent.createChooser(intent, "分享到"));
     }
 

@@ -1,6 +1,7 @@
 package com.example.bottombar.step.service;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -18,6 +19,7 @@ import android.os.CountDownTimer;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.orhanobut.logger.Logger;
 
@@ -32,6 +34,8 @@ import com.example.bottombar.step.accelerometer.StepCount;
 import com.example.bottombar.step.accelerometer.StepValuePassListener;
 import com.example.bottombar.step.bean.StepData;
 import com.example.bottombar.step.utils.DbUtils;
+
+import static android.app.Notification.DEFAULT_ALL;
 
 public class StepService extends Service implements SensorEventListener {
     private String TAG = "StepService";
@@ -128,6 +132,7 @@ public class StepService extends Service implements SensorEventListener {
      * 初始化通知栏
      */
     private void initNotification() {
+        /*
         mBuilder = new NotificationCompat.Builder(this);
         mBuilder.setContentTitle(getResources().getString(R.string.app_name))
                 .setContentText("今日步数" + CURRENT_STEP + " 步")
@@ -141,16 +146,38 @@ public class StepService extends Service implements SensorEventListener {
         mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         startForeground(notifyId_Step, notification);
         Log.d(TAG, "initNotification()");
+*/
+
+        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        //判断是否是8.0Android.O
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel chan1 = new NotificationChannel("static",
+                    "Primary Channel", NotificationManager.IMPORTANCE_MIN);
+            chan1.setSound(null, null);
+            mNotificationManager.createNotificationChannel(chan1);
+            mBuilder = new NotificationCompat.Builder(this, "static");
+        } else {
+            mBuilder = new NotificationCompat.Builder(this);
+        }
+        //对builder进行配置
+        mBuilder.setContentTitle(getResources().getString(R.string.app_name)) //设置通知栏标题
+                .setContentText("今日步数" + CURRENT_STEP + " 步") //设置通知栏显示内容
+                .setPriority(NotificationCompat.PRIORITY_MAX) //设置通知优先级
+                .setContentIntent(getDefalutIntent(Notification.FLAG_ONGOING_EVENT))
+                .setWhen(System.currentTimeMillis())//通知产生的时间，会在通知信息里显示
+                .setSmallIcon(R.mipmap.logo)
+                .setSound(null)
+                //.setDefaults(DEFAULT_ALL)
+                .setOnlyAlertOnce(true)
+                .setOngoing(true)//ture，设置他为一个正在进行的通知。他们通常是用来表示一个后台任务,用户积极参与(如播放音乐)或以某种方式正在等待,因此占用设备(如一个文件下载,同步操作,主动网络连接)
+                .setAutoCancel(true); //设置这个标志当用户单击
+
     }
 
     /**
      * 初始化当天的步数
      */
     private void initTodayData() {
-        for(int i=0;i<timeNum;i++)
-        {
-            TIME_STEP[i]=0;
-        }
         CURRENT_DATE = getTodayDate();
         DbUtils.createDb(this, "DylanStepCount");
         DbUtils.getLiteOrm().setDebugged(false);
@@ -158,6 +185,10 @@ public class StepService extends Service implements SensorEventListener {
         List<StepData> list = DbUtils.getQueryByWhere(StepData.class, "today", new String[]{CURRENT_DATE});
         if (list.size() == 0 || list.isEmpty()) {
             CURRENT_STEP = 0;
+            for(int i=0;i<timeNum;i++)
+            {
+                TIME_STEP[i]=0;
+            }
         } else if (list.size() == 1) {
             Log.v(TAG, "StepData=" + list.get(0).toString());
             CURRENT_STEP = Integer.parseInt(list.get(0).getStep());
@@ -206,8 +237,8 @@ public class StepService extends Service implements SensorEventListener {
                     Log.d(TAG, "screen on");
                 } else if (Intent.ACTION_SCREEN_OFF.equals(action)) {
                     Log.d(TAG, "screen off");
-                    //改为60秒一存储
-                    duration = 60000;
+                    //改为58秒一存储
+                    duration = 58000;
                 } else if (Intent.ACTION_USER_PRESENT.equals(action)) {
                     Log.d(TAG, "screen unlock");
 //                    save();
@@ -247,13 +278,25 @@ public class StepService extends Service implements SensorEventListener {
     private void isTime() {
         String []time = {"00:00","02:00","06:00","10:00","14:00","18:00","22:00"};
         if (time[0].equals(new SimpleDateFormat("HH:mm").format(new Date())) || !CURRENT_DATE.equals(getTodayDate())) {
-            initTodayData();
+            CURRENT_STEP = 0;
+            for(int i=0;i<timeNum;i++)
+            {
+                TIME_STEP[i]=0;
+            }
+            CURRENT_DATE = getTodayDate();
+            if (mStepCount != null) {
+                mStepCount.setSteps(CURRENT_STEP);
+            }
+            save();
+            updateNotification();
+
         }
         else {
             for (int i = 1; i < timeNum; i++) {
                 if(time[i].equals(new SimpleDateFormat("HH:mm").format(new Date())))
                 {
-                    TIME_STEP[i]=CURRENT_STEP;
+                    TIME_STEP[i] = CURRENT_STEP;
+                    save();
                     break;
                 }
             }
@@ -296,12 +339,36 @@ public class StepService extends Service implements SensorEventListener {
         //设置点击跳转
         Intent hangIntent = new Intent(this, MainActivity.class);
         PendingIntent hangPendingIntent = PendingIntent.getActivity(this, 0, hangIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-
-        Notification notification = mBuilder.setContentTitle(getResources().getString(R.string.app_name))
-                .setContentText("今日步数" + CURRENT_STEP + " 步")
-                .setWhen(System.currentTimeMillis())//通知产生的时间，会在通知信息里显示
-                .setContentIntent(hangPendingIntent)
-                .build();
+/*
+        Notification notification = null;
+        String id = "my_channel_01";
+        String name="我是渠道名字";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel mChannel = new NotificationChannel(id, name, NotificationManager.IMPORTANCE_LOW);
+            Toast.makeText(this, mChannel.toString(), Toast.LENGTH_SHORT).show();
+            Log.i(TAG, mChannel.toString());
+            mNotificationManager.createNotificationChannel(mChannel);
+            notification = new Notification.Builder(this)
+                    .setChannelId(id)
+                    .setContentTitle(getResources().getString(R.string.app_name))
+                    .setContentText("今日步数" + CURRENT_STEP + " 步")
+                    .setSmallIcon(R.mipmap.logo)
+                    .setContentIntent(getDefalutIntent(Notification.FLAG_ONGOING_EVENT))
+                    .setWhen(System.currentTimeMillis())//通知产生的时间，会在通知信息里显示
+                    .setPriority(Notification.PRIORITY_DEFAULT)//设置该通知优先级
+                    .setAutoCancel(false)//设置这个标志当用户单击面板就可以让通知将自动取消
+                    .setOngoing(true)//ture，设置他为一个正在进行的通知。他们通常是用来表示一个后台任务,用户积极参与(如播放音乐)或以某种方式正在等待,因此占用设备(如一个文件下载,同步操作,主动网络连接)
+                    .build();
+        } else {
+*/
+        Notification   notification = mBuilder
+                    .setContentTitle(getResources().getString(R.string.app_name))
+                    .setContentText("今日步数" + CURRENT_STEP + " 步")
+                    .setWhen(System.currentTimeMillis())//通知产生的时间，会在通知信息里显示
+                    .setContentIntent(hangPendingIntent)
+                    .setSound(null)
+                    .build();
+//        }
         mNotificationManager.notify(notifyId_Step, notification);
         if (mCallback != null) {
             mCallback.updateUi(CURRENT_STEP);
@@ -540,6 +607,7 @@ public class StepService extends Service implements SensorEventListener {
         public void onFinish() {
             // 如果计时器正常结束，则开始计步
             time.cancel();
+            isTime();
             save();
             startTimeCount();
         }
@@ -562,12 +630,11 @@ public class StepService extends Service implements SensorEventListener {
             StepData data = new StepData();
             data.setToday(CURRENT_DATE);
             data.setStep(tempStep + "");
-
             for(int i=0;i<7;i++) {
                 data.setTimeStep(i,TIME_STEP[i]+"");
             }
-
             DbUtils.insert(data);
+
         } else if (list.size() == 1) {
             StepData data = list.get(0);
             data.setStep(tempStep + "");
@@ -575,6 +642,7 @@ public class StepService extends Service implements SensorEventListener {
                 data.setTimeStep(i,TIME_STEP[i]+"");
             }
             DbUtils.update(data);
+
         } else {
         }
     }

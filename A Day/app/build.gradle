@@ -2,9 +2,10 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
+    //buildToolsVersion "28.0.3"
     defaultConfig {
         applicationId "example.com.bottombar"
-        minSdkVersion 21
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -16,6 +17,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+    }
+
 }
 
 dependencies {
@@ -28,4 +33,5 @@ dependencies {
     implementation files('libs/lite-orm-1.7.0.jar')
     implementation 'com.orhanobut:logger:1.8'
     implementation 'pub.devrel:easypermissions:2.0.0'
+    implementation project(':MPChartLib')
 }

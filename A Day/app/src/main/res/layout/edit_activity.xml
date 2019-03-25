@@ -7,13 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:id="@+id/lay_main"
-    android:background="@drawable/pureskin1">
+    android:background="#FFFFFF">
 
     <LinearLayout
         android:id="@+id/ll_tittle"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#13b9f5">
+        android:background="#99CCFF">
 
         <ImageButton
             android:id="@+id/prv_btn"
@@ -31,9 +31,10 @@
 
         <ImageButton
             android:id="@+id/yes_btn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
             android:layout_marginRight="5dp"
+            android:layout_gravity="center"
             android:background="#00000000"
             android:scaleType="fitXY"
             android:src="@drawable/yes" />
@@ -75,7 +76,7 @@
         android:id="@+id/ll_menu"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="#ADD8E6"
+        android:background="#CCFFFF"
         android:orientation="horizontal"
         android:layout_alignParentBottom= "true">
 
@@ -90,8 +91,7 @@
             <ImageView
                 android:id="@+id/iv_img"
                 android:layout_width="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_height="33dp"
+                android:layout_height="35dp"
                 android:background="#00000000"
                 android:src="@drawable/img"/>
 
@@ -205,7 +205,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:textSize="15sp"
-                    android:text="纯色一" />
+                    android:text="皮肤二" />
             </LinearLayout>
 
             <LinearLayout
@@ -228,7 +228,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:textSize="15sp"
-                    android:text="纯色二" />
+                    android:text="皮肤三" />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/ll_pureskin4"
@@ -250,7 +250,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:textSize="15sp"
-                    android:text="纯色三" />
+                    android:text="皮肤四" />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/ll_pureskin5"
@@ -272,7 +272,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:textSize="15sp"
-                    android:text="纯色四" />
+                    android:text="皮肤五" />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/ll_pureskin6"
@@ -294,139 +294,139 @@
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:textSize="15sp"
-                    android:text="纯色五" />
+                    android:text="皮肤六" />
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/ll_perskin1"
+                android:id="@+id/ll_pureskin7"
                 android:layout_width="130dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical" >
 
                 <ImageView
-                    android:id="@+id/iv_perskin1"
+                    android:id="@+id/iv_pureskin7"
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
                     android:background="#00000000"
-                    android:src="@drawable/perskin1"
+                    android:src="@drawable/pureskin7"
                     android:layout_marginBottom="5dp"/>
 
                 <TextView
-                    android:id="@+id/tv_perskin1"
+                    android:id="@+id/tv_pureskin7"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:textSize="15sp"
-                    android:text="个性一" />
+                    android:text="皮肤七" />
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/ll_perskin2"
+                android:id="@+id/ll_pureskin8"
                 android:layout_width="130dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical" >
 
                 <ImageView
-                    android:id="@+id/iv_perskin2"
+                    android:id="@+id/iv_pureskin8"
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
                     android:background="#00000000"
-                    android:src="@drawable/perskin2"
+                    android:src="@drawable/pureskin8"
                     android:layout_marginBottom="5dp"/>
 
                 <TextView
-                    android:id="@+id/tv_perskin2"
+                    android:id="@+id/tv_pureskin8"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:textSize="15sp"
-                    android:text="个性二" />
+                    android:text="皮肤八" />
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/ll_perskin3"
+                android:id="@+id/ll_pureskin9"
                 android:layout_width="130dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical" >
 
                 <ImageView
-                    android:id="@+id/iv_perskin3"
+                    android:id="@+id/iv_pureskin9"
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
                     android:background="#00000000"
-                    android:src="@drawable/perskin3"
+                    android:src="@drawable/pureskin9"
                     android:layout_marginBottom="5dp"/>
 
                 <TextView
-                    android:id="@+id/tv_perskin3"
+                    android:id="@+id/tv_pureskin9"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:textSize="15sp"
-                    android:text="个性三" />
+                    android:text="皮肤九" />
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/ll_perskin4"
+                android:id="@+id/ll_pureskin10"
                 android:layout_width="130dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical" >
 
                 <ImageView
-                    android:id="@+id/iv_perskin4"
+                    android:id="@+id/iv_pureskin10"
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
                     android:background="#00000000"
-                    android:src="@drawable/perskin4"
+                    android:src="@drawable/pureskin10"
                     android:layout_marginBottom="5dp"/>
 
                 <TextView
-                    android:id="@+id/tv_perskin4"
+                    android:id="@+id/tv_pureskin10"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:textSize="15sp"
-                    android:text="个性四" />
+                    android:text="皮肤十" />
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/ll_perskin5"
+                android:id="@+id/ll_pureskin11"
                 android:layout_width="130dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical" >
 
                 <ImageView
-                    android:id="@+id/iv_perskin5"
+                    android:id="@+id/iv_pureskin11"
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
                     android:background="#00000000"
-                    android:src="@drawable/perskin5"
+                    android:src="@drawable/pureskin11"
                     android:layout_marginBottom="5dp"/>
 
                 <TextView
-                    android:id="@+id/tv_perskin5"
+                    android:id="@+id/tv_pureskin11"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:textSize="15sp"
-                    android:text="个性五" />
+                    android:text="皮肤十一" />
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/ll_perskin6"
+                android:id="@+id/ll_pureskin12"
                 android:layout_width="130dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical" >
 
                 <ImageView
-                    android:id="@+id/iv_perskin6"
+                    android:id="@+id/iv_pureskin12"
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
                     android:background="#00000000"
-                    android:src="@drawable/perskin6"
+                    android:src="@drawable/pureskin12"
                     android:layout_marginBottom="5dp"/>
 
                 <TextView
-                    android:id="@+id/tv_perskin6"
+                    android:id="@+id/tv_pureskin12"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:textSize="15sp"
-                    android:text="个性六" />
+                    android:text="皮肤十二" />
             </LinearLayout>
         </LinearLayout>
 

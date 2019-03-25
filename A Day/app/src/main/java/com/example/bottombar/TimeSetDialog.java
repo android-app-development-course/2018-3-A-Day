@@ -14,7 +14,8 @@ public class TimeSetDialog extends Dialog {
     Button dateSetButton,positiveButton,negativeButton;
     TimePicker timePicker;
     Calendar calendar;
-    String date,alerttime=null;
+    String date=null;
+    String alerttime = "";
     private TimeSetDialog timeSetDialog = null;
 
     //初始化时间设置

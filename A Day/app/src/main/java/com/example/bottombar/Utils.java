@@ -2,6 +2,7 @@ package com.example.bottombar;
 
 
 import android.text.format.Time;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -12,6 +13,7 @@ public class Utils {
     private static ArrayList<HashMap<String,String>> arraylist = new ArrayList<HashMap<String,String>>();
     private static ArrayList<HashMap<String,String>> showlist = new ArrayList<HashMap<String,String>>();
     private static Long[] tempTimeMillis = null;
+    private static String[] tempString = null;
     public static void put(HashMap<String,String> map){
         arraylist.add(map);
     }
@@ -38,11 +40,30 @@ public class Utils {
     public static void MillisToDate(ArrayList<HashMap<String,String>> arraylist){
         int size = arraylist.size();
         tempTimeMillis = new Long[size];
+        tempString = new String[size];
         for(int i=0;i<size;i++)
         {
             String temp = timeTransfer(i);
             arraylist.get(i).remove("datetime");
             arraylist.get(i).put("datetime", temp);
+
+            String temp1 = arraylist.get(i).get("content");
+            tempString[i] = temp1;
+            String t = "";
+            for(int j = 0;j<temp1.length();j++){
+                if(temp1.charAt(j)!='☆'){
+                    t = t+temp1.charAt(j);
+                }
+                else {
+                    j++;
+                    while (temp1.charAt(j)!='☆'){
+                        j++;
+                    }
+                    t = t + "[图片]";
+                }
+            }
+            arraylist.get(i).remove("content");
+            arraylist.get(i).put("content", t);
         }
     }
 
@@ -52,8 +73,13 @@ public class Utils {
             String temp = String.valueOf(tempTimeMillis[i]);
             arraylist.get(i).remove("datetime");
             arraylist.get(i).put("datetime", temp);
+            String temp1 = tempString[i];
+            arraylist.get(i).remove("content");
+            arraylist.get(i).put("content", temp1);
         }
     }
+
+
     public static String format(int hourOfDay) {
         String str = "" + hourOfDay;
         if(str.length() == 1){

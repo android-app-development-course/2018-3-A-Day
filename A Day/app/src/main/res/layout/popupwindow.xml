@@ -9,15 +9,19 @@
     android:paddingRight="10dip"
     android:orientation="vertical" >
     <Button
+        android:layout_marginTop="5dp"
         android:id="@+id/deleteButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:background="@drawable/btn_rec_round"
         android:text="删除"/>
     <Button
+        android:layout_marginTop="5dp"
         android:id="@+id/shareButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="分享" />
+        android:background="@drawable/btn_rec_round"
+        android:text="分享文本" />
 </LinearLayout>

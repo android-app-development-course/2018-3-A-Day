@@ -107,7 +107,7 @@ public class ptEditor extends EditText {
         } else {
             edit_text.insert(index, spannableString);
         }
-        edit_text.insert(index, newLine);//插入图片后换行
+        //edit_text.insert(index, newLine);//插入图片后换行
         return spannableString;
     }
 
@@ -192,33 +192,25 @@ public class ptEditor extends EditText {
     }
 
     public void load(String content) {
-
-        boolean ispic = false;
-        int flag = 0,k = 0;
+        int k = 0;
         for(int i = 0;i<content.length();i++)
         {
-            if(content.substring(i,i+1).equals("☆"))
+            if(!(content.substring(i,i+1).equals("☆")))
             {
-                flag ++;
-                if(flag != 2)
+                SpannableString ss = new SpannableString(content.substring(i,i+1));
+                append(ss);
+            }
+            else
+            {
+                k = i+1;
+                i++;
+                while(!(content.substring(i,i+1).equals("☆")))
                 {
-                    if(i != 0 )
-                    {
-                        SpannableString ss = new SpannableString(content.substring(k,i));
-                        append(ss);
-                    }
-                    k = i + 1;
+                    i++;
                 }
-                else if(flag == 2)
-                {
-                    ispic = true;
-                    flag = 0;
-                    insertBitmap(content.substring(k,i));
-                    k = i + 1;
-                }
+                insertBitmap(content.substring(k,i));
             }
         }
-        if(ispic == false)
-            setText(content);
     }
+
 }

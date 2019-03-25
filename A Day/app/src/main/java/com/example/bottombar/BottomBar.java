@@ -23,11 +23,12 @@ import com.example.bottombar.fragment.NoteFragment;
 import com.example.bottombar.fragment.WalkFragment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
 public class BottomBar extends View {
-
+    ArrayList<HashMap<String,String>> list = Utils.getList();
     private int currentStepCount;
 
     private int main_flag;
@@ -298,6 +299,7 @@ public class BottomBar extends View {
         if(whichFragment==0 && main_flag==1) {
             show_walk_main();
             main_flag=0;
+            Utils.DateToMillis(list);
         }
         else if(whichFragment==1 && main_flag==0) {
             noteFragment=new NoteFragment();

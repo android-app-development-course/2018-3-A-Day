@@ -33,8 +33,10 @@ public class AlertDialogActivity extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		PowerManager pm = (PowerManager)getSystemService(Context.POWER_SERVICE);
-		mWakelock = pm.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP |PowerManager.FULL_WAKE_LOCK, "AlertDialog");
-		        mWakelock.acquire();
+		mWakelock = pm.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP |PowerManager.FULL_WAKE_LOCK | PowerManager.ON_AFTER_RELEASE,"AlertDialog");
+		if (mWakelock != null) {
+			mWakelock.acquire();
+		}
 		KeyguardManager keyguardManager = (KeyguardManager)getSystemService(KEYGUARD_SERVICE);
 		context = this;
 		try{
@@ -49,7 +51,21 @@ public class AlertDialogActivity extends Activity implements OnClickListener{
 			
 			AlertDialog.Builder localBuilder = new AlertDialog.Builder(context);
 			localBuilder.setTitle("事件提醒");
-			localBuilder.setMessage(getIntent().getStringExtra("content"));
+			String mes = getIntent().getStringExtra("content");
+			String t = "";
+			for(int j = 0;j<mes.length();j++){
+				if(mes.charAt(j)!='☆'){
+					t = t+mes.charAt(j);
+				}
+				else {
+					j++;
+					while (mes.charAt(j)!='☆'){
+						j++;
+					}
+					t = t + "[图片]";
+				}
+			}
+			localBuilder.setMessage(t);
 			localBuilder.setPositiveButton("查看",this);
 			localBuilder.setNegativeButton("忽略",this);
 			localBuilder.show();
@@ -69,12 +85,15 @@ public class AlertDialogActivity extends Activity implements OnClickListener{
 		    {
 				e.printStackTrace();
 		    }
+		if (mWakelock != null) {
+			mWakelock.release();
+		}
 		}
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
 		// TODO Auto-generated method stub
 		switch(which){
-		case DialogInterface.BUTTON1:
+		case DialogInterface.BUTTON_POSITIVE:
 		{
 			Intent intent = new Intent(AlertDialogActivity.this, EditActivity.class);
 			Bundle b = new Bundle();
@@ -85,9 +104,9 @@ public class AlertDialogActivity extends Activity implements OnClickListener{
 			startActivity(intent);
 			finish();
 		}
-		case DialogInterface.BUTTON2:
+		case DialogInterface.BUTTON_NEGATIVE:
 		{
-//			mWakelock.release();
+			//mWakelock.release();
 			player.stop();
 			finish();
 		}
